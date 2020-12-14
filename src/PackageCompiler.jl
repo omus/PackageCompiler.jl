@@ -233,9 +233,10 @@ function create_sysimg_object_file(object_file::String, packages::Vector{String}
                 statement = replace(statement, r"Vararg{(.*?), N} where N" => s"Vararg{\\1, 100}")
                 try
                     Base.include_string(PrecompileStagingArea, statement)
-                catch
+                catch e
                     # See julia issue #28808
                     @info "failed to execute \$statement"
+                    showerror(stderr, e)
                 end
             end
         end # module
