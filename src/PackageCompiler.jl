@@ -236,7 +236,6 @@ function create_sysimg_object_file(object_file::String, packages::Vector{String}
                 catch
                     # See julia issue #28808
                     @info "failed to execute \$statement"
-                    rethrow()
                 end
             end
         end # module
